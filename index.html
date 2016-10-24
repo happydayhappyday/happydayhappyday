@@ -259,8 +259,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/23/My-New-Post/" itemprop="url">
-                  My New Post
+                <a class="post-title-link" href="/2016/10/24/ios/" itemprop="url">
+                  ios开发中nil，Nil，NULL，和[NSNul null]的区别
                 </a>
               
             
@@ -273,8 +273,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-23T13:38:05+08:00" content="2016-10-23">
-              2016-10-23
+            <time itemprop="dateCreated" datetime="2016-10-24T21:28:18+08:00" content="2016-10-24">
+              2016-10-24
             </time>
           </span>
 
@@ -284,8 +284,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/23/My-New-Post/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/23/My-New-Post/" itemprop="commentsCount"></span>
+                <a href="/2016/10/24/ios/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/24/ios/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -295,7 +295,7 @@
 
           
           
-             <span id="/2016/10/23/My-New-Post/" class="leancloud_visitors" data-flag-title="My New Post">
+             <span id="/2016/10/24/ios/" class="leancloud_visitors" data-flag-title="ios开发中nil，Nil，NULL，和[NSNul null]的区别">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -319,7 +319,54 @@
       
         
           
-            
+            <p>1.nil：指向oc中对象的空指针<br>  Nil：指向oc中类的空指针<br>  NULL：指向其他类型的空指针，如一个c类型的内存指针<br>  NSNull：在集合对象中，表示空值的对象</p>
+<p>若obj为nil：</p>
+<pre><code>[obj message]  将返回NO，而不是NSException
+</code></pre><p>若obj为NSNull：</p>
+<pre><code>[obj message]  将抛出异常NSException
+</code></pre><p>2.nil和NULL从字面意思来理解比较见答案，nil是一个对象，而NULL是一个值我的理解为nil是讲对象设置为空，而NULL是将基本类型设置为空的。而且我们对于nil调用方法，不会产生crash或者抛出异常。</p>
+<p>看一下用法</p>
+<pre><code>NSURL *url =  nil;
+Class class = Nil;
+int *pointerInt = NULL;
+</code></pre><p>nil是一个对象指针为空，Nil是一个类指针为空，NULL是基本数据类型为空。<br>这五个概念很容易混淆，在一些场合下他们具有同样的用法。首先解释一下“空指针”的意思，空指针是指该指针未指向一块有意义的内存区。</p>
+<p>如  </p>
+<pre><code>int *p;int *p = NULL;
+NSObject *obj1 = [[NSObject alloc]init];
+NSObject *obj2 = [NSNull null];
+NSObject *obj3 = [NSObjectnew];
+NSObject *obj4;
+NSArray *arr1 = [NSArray arrayWithObjects:obj1,obj2,obj3,obj4, nil];
+
+NSLog(@&quot;arr1 count:%ld&quot;,[arr1 count]);
+//count: 3 因为obj=nil，在加入obj4时就结束添加对象
+
+NSObject *obj1;
+NSObject *obj2 = [[NSObject alloc]init];
+NSObject *obj3 = [NSNull null];
+NSObject *obj4 = [NSObjectnew];
+NSArray *arr2 = [NSArray arrayWithObjects:obj1,obj2,obj3,obj4, nil];
+NSLog(@&quot;arr2 count: %ld&quot;, [arr2 count]);
+//count: 0，因为obj1=nil，所以后面的对象没有添加进去
+
+[NSNull null]通常作为占位符作用，如下：
+
+NSObject *obj1 = [NSNull null];
+NSArray *arr1 = [NSArray arrayWithObjects:@&quot;One&quot;,&quot;Two&quot;,obj1,&quot;Three&quot;, nil];
+for(NSString *str in arr1){
+    NSLog(@&quot;array object:%@&quot;,str);
+}
+//reslut:One、Two、、Three
+
+NSObject *obj1 = [NSNull null];
+NSArray *arr1 = [NSArray arrayWithObjects:@&quot;One&quot;,&quot;Two&quot;,obj1,@&quot;Three&quot;, nil];
+for(NSString *str in arr1){
+    if(str!= [NSNull null]){
+        NSLog(@&quot;array object:%@&quot;,str);
+    }
+}
+//result：One、Two、three
+</code></pre>
           
         
       
@@ -368,8 +415,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/21/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2016/10/24/aixiamu/" itemprop="url">
+                  aixiamu
                 </a>
               
             
@@ -382,8 +429,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-21T22:01:42+08:00" content="2016-10-21">
-              2016-10-21
+            <time itemprop="dateCreated" datetime="2016-10-24T20:55:56+08:00" content="2016-10-24">
+              2016-10-24
             </time>
           </span>
 
@@ -393,8 +440,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/21/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/21/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2016/10/24/aixiamu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/24/aixiamu/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -404,7 +451,7 @@
 
           
           
-             <span id="/2016/10/21/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+             <span id="/2016/10/24/aixiamu/" class="leancloud_visitors" data-flag-title="aixiamu">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -428,16 +475,7 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+            
           
         
       
